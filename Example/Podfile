@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HandyUIKit_Example' do
+  pod 'HandyUIKit', :path => '../'
+
+  target 'HandyUIKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
