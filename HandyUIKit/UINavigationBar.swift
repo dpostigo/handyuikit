@@ -5,12 +5,20 @@
 import Foundation
 import UIKit
 
-public class HandyNavigationBar: UINavigationBar {
+public class CustomNavigationBar: UINavigationBar {
 
-    public var customHeight: CGFloat = 50 {
+    public var customHeight: CGFloat = 44 {
         didSet {
             self.invalidateIntrinsicContentSize()
         }
+    }
+
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     override public func intrinsicContentSize() -> CGSize {
@@ -21,6 +29,7 @@ public class HandyNavigationBar: UINavigationBar {
         return CGSize(width: super.sizeThatFits(size).width, height: self.intrinsicContentSize().height)
     }
 
+
 }
 
 extension UINavigationController {
@@ -28,30 +37,6 @@ extension UINavigationController {
         self.init(navigationBarClass: navigationBarClass, toolbarClass: nil)
         self.setViewControllers([rootViewController], animated: false)
     }
-}
 
-//
-//extension UINavigationController {
-//
-//    enum Style {
-//        case White
-//        case Black
-//    }
-//
-//    convenience init(rootViewController: UIViewController, style: Style) {
-//        switch style {
-//            case .White:
-//                self.init(navigationBarClass: BumpersNavigationBar.self, toolbarClass: nil)
-//                self.navigationBar.translucent = false
-//                self.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-//                self.navigationBar.shadowImage = UIImage()
-//                self.setViewControllers([rootViewController], animated: false)
-//                self.view.backgroundColor = UIColor.whiteColor()
-//            case .Black:
-//                // TODO:
-//                self.init(rootViewController: rootViewController)
-//                break
-//        }
-//    }
-//
-//}
+    public var customNavigationBar: CustomNavigationBar? { return self.navigationBar as? CustomNavigationBar }
+}
