@@ -10,6 +10,7 @@ public class CustomNavigationBar: UINavigationBar {
     public var customHeight: CGFloat = 44 {
         didSet {
             self.invalidateIntrinsicContentSize()
+            Swift.print("self.customHeight = \(self.customHeight)")
         }
     }
 
@@ -25,9 +26,15 @@ public class CustomNavigationBar: UINavigationBar {
         return CGSize(width: UIViewNoIntrinsicMetric, height: self.customHeight)
     }
 
+//    override class func requiresConstraintBasedLayout() -> Bool {
+//        return super.requiresConstraintBasedLayout()
+//    }
+
+
     override public func sizeThatFits(size: CGSize) -> CGSize {
         return CGSize(width: super.sizeThatFits(size).width, height: self.intrinsicContentSize().height)
     }
+
 
 
 }
